@@ -97,6 +97,70 @@ DB '  |  / \ ', 13, 10, ; both legs - game over stage
 DB '  |      ', 13, 10,
 DB '=========$'
 
+hangPtrs dw offset hang0, offset hang1, offset hang2, offset hang3, 
+         dw offset hang4, offset hang5, offset hang6
+.code
+Main Proc
+       mov ax, @data
+       mov ds, ax
+       
+       mov ah,00h
+       int 1ah
+       xor dx, cx
+       mov randSeed, dx
+       call Pick_Word
+       
+Game_Loop:
+      call Clear_screen
+      
+      lea dx,msgTilte 
+      mov ah,09h
+      int 21h
+
+      call Print_Hangman
+
+      lea dx, msgTries
+      mov ah, 09h
+      int 21h
+      mov al, 6
+      sub al, wrongCount
+      add al, 30h
+      mov dl, al
+      mov ah, 02h
+      int 21h
+
+      lea dx, msgWrongs
+      mov ah, 09h
+      int 21h
+      all Print_Word_Letters
+
+      lea dx, msgNewLline
+      mov ah, 09h
+      int 21h
+      call Print_Gueesed_Word
+
+      cmp gameOver, 1
+      je PLAYER_WON
+      cmp gameOver, 2
+      je PLAYER-LOST
+
+      lea dx, msgGuess
+      mov ah, 09h
+      int 21h
+
+      mov ah,01h
+      int21h
+      mov bl,al
+
+      cmp bl,61h
+      jl Skip_Upper
+      cmp bl,7ah
+      jg Skip_Upper
+      sub bl, 20h
+Skip_Upper
+      
+       
+       
 
 
 
