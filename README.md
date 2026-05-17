@@ -45,3 +45,38 @@ Fatima Asif — 01-135232-021
 - Implemented "PRINT_HANGMAN", "Print_Guessed_Word", "Print_Wrong_Letters" and "Clear_Screen"
 - Wrote all in-game message strings and formatted the game screen layout
 
+ 
+# Setup and Run Instructions
+  
+Requirements
+- emu8086 installed on Windows
+
+Steps
+1. Clone the repository
+   
+3. Open emu8086
+- Launch the emu8086 application
+
+5. Load the file
+- Click File then Open
+- Navigate to the cloned folder
+- Select hangman.asm
+
+7. Compile
+- Click Compile or press F5
+- Check the bottom panel for any errors before proceeding
+
+9. Run
+- Click Run or press F9
+- The emulator screen will open and the game will start
+
+How to Play
+- A random word is picked each time you run the program
+Type a letter and press Enter to guess
+- You have 6 attempts before the game ends
+- Both uppercase and lowercase letters are accepted
+  
+Note
+This program runs inside emu8086 only. It will not run natively on modern 
+operating systems without an emulator.
+
