@@ -22,3 +22,6 @@ Key Procedures:
 - PRINT_GUESSED_WORD : Prints the current _ _ A _ _ style masked word.
 - PRINT_WRONG_LETTERS : Lists all incorrect guesses so far.
 - CLEAR_SCREEN : Clears the console via BIOS video interrupt.
+
+   Group Contributions
+MemberReg. NumberModuleContributionsHuraira Minhas01-135232-030Core Game LogicImplemented PICK_WORD with BIOS clock seeding and LCG random selection, wrote PROCESS_GUESS with duplicate detection, win/loss state management via gameOver, wrongCount, and guessedCountEman Shoukat01-135232-017Input & TestingHandled keyboard input loop, uppercase conversion, invalid input rejection, wrote all test cases and verified correct/wrong/duplicate guess paths, debugged Find_Slot logicFatima Asif01-135232-021UI & DisplaysDesigned all 7 ASCII hangman art stages, implemented PRINT_HANGMAN, PRINT_GUESSED_WORD, PRINT_WRONG_LETTERS, CLEAR_SCREEN, and wrote all in-game message strings
