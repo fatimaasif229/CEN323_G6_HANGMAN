@@ -16,9 +16,9 @@ Features:
 - Live Game Status - Shows tries remaining, wrong letters guessed, and current word progress.
 
 Key Procedures:
-- PICK_WORD : Selects and copies random word into game state.
-- PROCESS_GUESS : Validates input, updates guessed/wrong arrays, checks win/lose.
-- PRINT_HANGMAN : Displyas the correct ASCII art stage based on wrongCount.
-- PRINT_GUESSED_WORD : Prints the current _ _ A _ _ style masked word.
-- PRINT_WRONG_LETTERS : Lists all incorrect guesses so far.
-- CLEAR_SCREEN : Clears the console via BIOS video interrupt.
+- Pick_Word : Selects and copies random word into game state.
+- Process_Guess : Validates input, updates guessed/wrong arrays, checks win/lose.
+- Print_Hangman : Displyas the correct ASCII art stage based on wrongCount.
+- Print_Guessed_Word : Prints the current _ _ A _ _ style masked word.
+- Print_Wrong_Letters : Lists all incorrect guesses so far.
+- Clear_Screen : Clears the console via BIOS video interrupt.
