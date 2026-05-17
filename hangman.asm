@@ -51,84 +51,138 @@ msgEnter   db 13, 10, "Press any key to exit...", "$"
 .code
 main proc
 
-    mov ax, @data
-    mov ds, ax
+       mov ax, @data
+       mov ds, ax
 
-    mov ah, 00h
-    int 1ah
+       mov ah, 00h
+       int 1ah
 
-    xor dx, cx
-    mov randSeed, dx
 
-    call Pick_Word
+       xor dx, cx
+       mov randSeed, dx
 
-    mov ah, 4ch
-    int 21h
+       call Pick_Word
+
+
+
+Game_Loop:
+
+        cmp gameOver, 1
+        je Player_won
+
+        cmp gameOver, 2
+        je player_lost
+
+        jmp Exit_Game
+
+
+
+
+Player_won:
+
+         lea dx, msgWin
+         mov ah, 09h
+         int 21h
+
+         jmp Exit_Game
+
+
+
+Player_Lost:
+
+         lea dx, msgLose
+         mov ah, 09h
+         int 21h
+
+         lea dx, msgWord
+         mov ah, 09h
+         int 21h
+
+
+       
+Exit_Game:
+
+         lea dx, msgEnter
+         mov ah, 09h
+         int 21h
+
+         mov ah, 01h
+         int 21h
+         
+
+         mov ah, 4ch
+         int 21h
 
 main endp
 
 
 Pick_Word proc
 
-    mov ax, randSeed
-    mov bx, 25173
-    mul bx
-    add ax, 13849
-    mov randSeed, ax
+       mov ax, randSeed
+       mov bx, 25173
+       mul bx
 
-    xor dx, dx
-    mov bx, 8
-    div bx
+       add ax, 13849
+       mov randSeed, ax
 
-    mov bx, dx
-    shl bx, 1
+       xor dx, dx
+       mov bx, 8
+       div bx
 
-    mov si, wordPtrs[bx]
+       mov bx, dx
+       shl bx, 1
 
-    lea di, currentWord
-    lea bx, guessedWord
+       mov si, wordPtrs[bx]
+ 
+       lea di, currentWord
+       lea bx, guessedWord
 
-    mov cx, 0
+       mov cx, 0
+
 
 Copy_Loop:
 
-    mov al, [si]
-    cmp al, "$"
+       mov al, [si]
+       cmp al, "$"
 
-    je Copy_Done
+       je Copy_Done
 
-    mov [di], al
-    mov byte ptr [bx], "_"
+       mov [di], al
+       mov byte ptr [bx], "_"
 
-    inc si
-    inc di
-    inc bx
-    inc cx
+       inc si
+       inc di
+       inc bx
+       inc cx
 
-    jmp Copy_Loop
+       jmp Copy_Loop
+
 
 
 Copy_Done:
 
-    mov [di], al
-    mov byte ptr [bx], "$"
+      mov [di], al
+      mov byte ptr [bx], "$"
 
-    mov wordLen, cl
-    mov wrongCount, 0
-    mov guessedCount, 0
-    mov gameOver, 0
+      mov wordLen, cl
+      mov wrongCount,   0
+      mov guessedCount, 0
+      mov gameOver,     0
 
-    lea di, wrongGuesses
-    mov cx, 20
+     lea di, wrongGuesses
+     mov cx, 20
+
+
 
 Clear_Wrong:
 
-    mov byte ptr [di], 0
+      mov byte ptr [di], 0
 
-    inc di
-    loop Clear_Wrong
+      inc di
+      loop Clear_Wrong
 
-    ret
+      ret
+
 
 Pick_Word endp
 
